@@ -1,0 +1,43 @@
+<h2>Welcome {{ user }}</h2>
+
+<form method="get">
+    <input name="title" placeholder="Title">
+    <input name="author" placeholder="Author">
+    <input name="category" placeholder="Category">
+    <input name="year" type="number" placeholder="Year">
+    <button type="submit">Search</button>
+</form>
+
+
+<table border="1" cellpadding="5">
+<tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Genre</th>
+    <th>Year</th>
+    {% if role == 'admin' %}
+        <th>Actions</th>
+    {% endif %}
+</tr>
+
+{% for book in books %}
+<tr>
+    <td>{{ book.title }}</td>
+    <td>{{ book.author }}</td>
+    <td>{{ book.genre }}</td>
+    <td>{{ book.published_year }}</td>
+    {% if role == 'admin' %}
+        <td>
+            <a href="edit.php?id={{ book.id }}">Edit</a>
+            <a href="delete.php?id={{ book.id }}">Delete</a>
+        </td>
+    {% endif %}
+</tr>
+{% else %}
+<tr>
+    <td colspan="5">No books found</td>
+</tr>
+{% endfor %}
+</table>
+
+<a href="logout.php">Logout</a>

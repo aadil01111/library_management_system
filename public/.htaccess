@@ -1,0 +1,12 @@
+<IfModule mod_headers.c>
+
+# Clickjacking protection
+Header always set X-Frame-Options "DENY"
+
+# Prevent MIME sniffing
+Header always set X-Content-Type-Options "nosniff"
+
+# Content Security Policy
+Header set Content-Security-Policy "default-src 'self'; img-src 'self' data:; script-src 'self'; style-src 'self';"
+
+</IfModule>
